@@ -19,3 +19,8 @@ export FLASK_APP=flaskblog.py
 export FLASK_DEBUG=1
 flask run 
 ```
+
+To generate the requirements.txt file that is needed to install all flask dependencies, run
+```bash
+pip3 freeze > requirements.txt
+```
