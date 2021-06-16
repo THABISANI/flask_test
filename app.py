@@ -8,4 +8,8 @@ def index():
 
 @app.route('/healthy', methods=['GET', 'POST'])
 def healthy():
-    return "<H1>Flask App is Healthy!!!</H1>"
+    return "<H2>Flask App is Healthy!!!</H2>"
+
+@app.route('/fitness', methods=['GET', 'POST'])
+def healthy():
+    return "<H2>Flask App is Fit!!!</H2>"
