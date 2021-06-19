@@ -10,6 +10,7 @@ def index():
 def healthy():
     return "<H2>Flask App is Healthy!!!</H2>"
 
-@app.route('/fitness', methods=['GET', 'POST'])
-def healthy():
-    return "<H2>Flask App is Fit!!!</H2>"
+@app.route('/login', methods=['POST'])
+def login():
+    content = request.get_json(force=True)
+    return {"Message" : content}, 201
