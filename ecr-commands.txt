@@ -12,6 +12,8 @@ docker push <ECR_URL>
 
 e.g docker push 043956188353.dkr.ecr.us-east-1.amazonaws.com/recommendations:latest
 
+aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 043956188353.dkr.ecr.us-east-1.amazonaws.com
+
 docker build -t recommendations:latest .
 docker tag recommendations:latest 043956188353.dkr.ecr.us-east-1.amazonaws.com/recommendations:latest
 docker push 043956188353.dkr.ecr.us-east-1.amazonaws.com/recommendations:latest

@@ -7,8 +7,12 @@ from fuzzywuzzy import process
 
 app = Flask(__name__)
 
-@app.route('/', methods=['GET', 'POST'])
-def index():
+@app.route('/recommendations', methods=['GET'])
+def recommendation():
+
+    args = request.args
+    familiar_restaurant = args.get("restaurant")
+
     restaurants='restaurants.csv'
 
     df_restaurants=pd.read_csv(restaurants, usecols=['id','bna'], dtype={'id':'int32','bna':'str'})
@@ -35,7 +39,10 @@ def index():
             print(bnas)
             print(ids)
         return recommendations
-    recommendations = recommender('KFC', mat_restaurants_users, model_knn,20)
+
+    recommendations = []
+    if(familiar_restaurant):
+        recommendations = recommender(familiar_restaurant, mat_restaurants_users, model_knn,20)
     return {"recommended_restaurants": recommendations}
 
 @app.route('/healthy', methods=['GET', 'POST'])
