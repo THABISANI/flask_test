@@ -10,8 +10,8 @@ docker tag <IMAGE_NAME> <ECR_URL>
 // push to ECR
 docker push <ECR_URL>
 
-e.g docker push 861111619263.dkr.ecr.us-east-1.amazonaws.com/flaskapp:latest
+e.g docker push 043956188353.dkr.ecr.us-east-1.amazonaws.com/recommendations:latest
 
-docker build -t flaskapp:latest .
-docker tag flaskapp:latest 861111619263.dkr.ecr.us-east-1.amazonaws.com/flaskapp:latest
-docker push 861111619263.dkr.ecr.us-east-1.amazonaws.com/flaskapp:latest
+docker build -t recommendations:latest .
+docker tag recommendations:latest 043956188353.dkr.ecr.us-east-1.amazonaws.com/recommendations:latest
+docker push 043956188353.dkr.ecr.us-east-1.amazonaws.com/recommendations:latest
