@@ -23,7 +23,7 @@ def recommendation():
     if args.get("size") is None:
         number_of_restaurants = 20
     else:
-        number_of_restaurants = int(args.get("size"))
+        number_of_restaurants = int(args.get("size")) + 1
 
     restaurants='restaurants.csv'
 
