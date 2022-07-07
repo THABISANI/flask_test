@@ -15,6 +15,7 @@ Faker==2.0.0
 filelock==3.6.0
 flake8==3.7.8
 Flask==2.0.3
+Flask-Cors==3.0.10
 fuzzywuzzy==0.18.0
 gprof2dot==2021.2.21
 importlib-metadata==0.23
