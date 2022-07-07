@@ -6,8 +6,10 @@ from scipy.sparse import csr_matrix
 from sklearn.neighbors import NearestNeighbors
 from fuzzywuzzy import process
 import math
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/recommendations', methods=['GET'])
 def recommendation():
