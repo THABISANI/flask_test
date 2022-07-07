@@ -28,9 +28,9 @@ def recommendation():
     restaurants='restaurants.csv'
 
     df_restaurants=pd.read_csv(restaurants, usecols=['id','bna'], dtype={'id':'int32','bna':'str'})
-    df_recommendations=pd.read_csv(restaurants, usecols=['bid','id','Lon', 'Lat'],dtype={'bid':'int32','id':'int32','Lon':'float32', 'Lat':'float32'})
+    df_recommendations=pd.read_csv(restaurants, usecols=['bid','id','Lon', 'Lat', 'rat', 'cus/0/id'],dtype={'bid':'int32','id':'int32','Lon':'float32', 'Lat':'float32', 'rat': 'float32', 'cus/0/id': 'float32'})
 
-    restaurants_users=df_recommendations.pivot(index='id', columns='bid',values=['Lon', 'Lat']).fillna(0)
+    restaurants_users=df_recommendations.pivot(index='id', columns='bid',values=['Lon', 'Lat', 'rat', 'cus/0/id']).fillna(0)
     mat_restaurants_users=csr_matrix(restaurants_users.values)
 
     model_knn= NearestNeighbors(metric='cosine', algorithm='brute', n_neighbors=number_of_restaurants)
@@ -45,15 +45,17 @@ def recommendation():
         distances, indices=model.kneighbors(data[idx], n_neighbors=n_recommendations)
         recommendations = []
         for i in indices:
-            bnas = df_restaurants['bna'][i].where(i!=idx)
             ids = df_restaurants['id'][i].where(i!=idx)
-            id_list = ids.to_dict().values()
-            for x in id_list:
+            bnas = df_restaurants['bna'][i].where(i!=idx)
+            id_list = list(ids.to_dict().values())
+            bna_list = list(bnas.to_dict().values())
+            print("===========BNAs========")
+            print(bna_list)
+            for index, x in enumerate(id_list):
                 if not math.isnan(x):
-                    recommendations.append({"id": int(x)})
-            print(bnas)
+                    recommendations.append({"id": int(x), "bna": bna_list[index]})
             print(ids)
-        print("=====Recomd===========")
+        print("=====Recommendations===========")
         print(recommendations)
         return recommendations
 
